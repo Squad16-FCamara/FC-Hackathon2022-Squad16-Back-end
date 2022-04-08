@@ -8,5 +8,6 @@ routes.get('/', (request, response) => response.json({ message: 'Hello' }));
 const userController = new UserController();
 
 routes.post('/user', userController.create);
+routes.post('/auth', userController.auth);
 
 export default routes;

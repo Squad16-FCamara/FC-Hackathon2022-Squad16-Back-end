@@ -1,7 +1,6 @@
-import { validateOrReject, ValidationError } from 'class-validator';
 import { Request, Response } from 'express';
 import CreateUserDTO from '../dtos/createUser';
-import AppError from '../errors/appError';
+import LoginUserDto from '../dtos/loginUser';
 import UserService from '../services/user';
 import validateDto from '../validations/validateDto';
 
@@ -18,6 +17,18 @@ class UserController {
     return response.status(201).json({
       message: 'User created!',
     });
+  }
+
+  public async auth(request: Request, response: Response) {
+    const userDto = new LoginUserDto(request.body);
+
+    await validateDto(userDto);
+
+    const userService = new UserService();
+
+    const userAndToken = await userService.auth(userDto);
+
+    return response.json(userAndToken);
   }
 }
 
