@@ -14,11 +14,16 @@ async function authMiddleware(
   }
 
   const secret = process.env.AUTH_SECRET || 'secret';
-  const { sub } = verify(token, secret) as JwtPayload;
 
-  request.user = { id: parseInt(sub) };
+  try {
+    const { sub } = verify(token, secret) as JwtPayload;
 
-  return next();
+    request.user = { id: parseInt(sub) };
+
+    return next();
+  } catch {
+    throw new AppError('Invalid token', 401);
+  }
 }
 
 export default authMiddleware;
