@@ -30,6 +30,16 @@ class UserController {
 
     return response.json(userAndToken);
   }
+
+  public async get(request: Request, response: Response) {
+    const id = parseInt(request.params.id);
+
+    const userService = new UserService();
+
+    const user = await userService.get(id);
+
+    return response.json({ user });
+  }
 }
 
 export default UserController;

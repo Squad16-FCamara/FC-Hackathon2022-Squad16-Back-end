@@ -16,7 +16,7 @@ async function authMiddleware(
   const secret = process.env.AUTH_SECRET || 'secret';
   const { sub } = verify(token, secret) as JwtPayload;
 
-  request.user = { id: sub };
+  request.user = { id: parseInt(sub) };
 
   return next();
 }

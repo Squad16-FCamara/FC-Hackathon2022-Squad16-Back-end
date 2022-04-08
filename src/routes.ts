@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import UserController from './controllers/user';
+import authMiddleware from './middlewares/auth';
 
 const routes = Router();
 
@@ -9,5 +10,6 @@ const userController = new UserController();
 
 routes.post('/user', userController.create);
 routes.post('/auth', userController.auth);
+routes.get('/user/:id', authMiddleware, userController.get);
 
 export default routes;

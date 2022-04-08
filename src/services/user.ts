@@ -62,6 +62,24 @@ class UserService {
 
     return { user, token };
   }
+
+  public async get(id: number) {
+    const user = await this.userRepository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!user) {
+      throw new AppError('User not found');
+    }
+
+    delete user.password;
+    delete user.email;
+    delete user.updatedAt;
+
+    return user;
+  }
 }
 
 export default UserService;
