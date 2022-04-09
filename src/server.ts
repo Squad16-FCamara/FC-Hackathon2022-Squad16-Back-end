@@ -3,10 +3,12 @@ import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
-import { createConnection, DataSource } from 'typeorm';
+import { createConnection } from 'typeorm';
 import errorHandler from './middlewares/error';
 import { User } from './entities/user';
 import routes from './routes';
+import { createServer } from 'http';
+import { Server } from 'ws';
 config();
 
 const app = express();
@@ -15,8 +17,10 @@ app.use(express.json());
 app.use(routes);
 app.use(errorHandler);
 
-const port = process.env.PORT || 3333;
+const server = createServer(app);
+const wss = new Server({ server });
 
+const port = process.env.PORT || 3333;
 (async function start() {
   await createConnection({
     type: 'postgres',
@@ -35,5 +39,17 @@ const port = process.env.PORT || 3333;
       console.log(error);
       process.exit(1);
     });
-  app.listen(port, () => console.log('Server started'));
+
+  wss.on('connection', (ws) =>
+    ws.on('message', (data) => {
+      const message = data.toString();
+      wss.clients.forEach((client) => {
+        if (client !== ws && client.readyState === WebSocket.OPEN) {
+          client.send(message);
+        }
+      });
+    })
+  );
+
+  server.listen(port, () => console.log('Server started'));
 })();
