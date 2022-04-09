@@ -1,5 +1,5 @@
 import CreateUserDTO from '../dtos/createUser';
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, ILike, Repository } from 'typeorm';
 import { User } from '../entities/user';
 import AppError from '../errors/appError';
 import { compare, hash } from 'bcryptjs';
@@ -79,6 +79,20 @@ class UserService {
     delete user.updatedAt;
 
     return user;
+  }
+
+  public async search(name: string) {
+    const users = await this.userRepository.findBy({
+      name: ILike(`%${name}%`),
+    });
+
+    for (let i = 0; i < users.length; i++) {
+      delete users[i].password;
+      delete users[i].updatedAt;
+      delete users[i].email;
+    }
+
+    return users;
   }
 }
 

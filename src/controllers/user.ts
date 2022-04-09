@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import CreateUserDTO from '../dtos/createUser';
 import LoginUserDto from '../dtos/loginUser';
+import SearchUserDto from '../dtos/searchUser';
+import AppError from '../errors/appError';
 import UserService from '../services/user';
 import validateDto from '../validations/validateDto';
 
@@ -39,6 +41,20 @@ class UserController {
     const user = await userService.get(id);
 
     return response.json({ user });
+  }
+
+  public async search(request: Request, response: Response) {
+    const name = request.query.name;
+
+    if (typeof name !== 'string') {
+      throw new AppError('You can not make a search like this');
+    }
+
+    const userService = new UserService();
+
+    const users = await userService.search(name);
+
+    return response.json({ users });
   }
 }
 
