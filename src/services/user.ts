@@ -81,6 +81,17 @@ class UserService {
     return user;
   }
 
+  public async getAll() {
+    const users = await this.userRepository.find();
+
+    users.forEach( user => {
+      delete user.password;
+      delete user.updatedAt;
+    })
+  
+    return users;
+  }
+
   public async search(name: string) {
     const users = await this.userRepository.findBy({
       name: ILike(`%${name}%`),

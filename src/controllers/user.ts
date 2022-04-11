@@ -7,6 +7,7 @@ import UserService from '../services/user';
 import validateDto from '../validations/validateDto';
 
 class UserController {
+  
   public async create(request: Request, response: Response) {
     const userDto = new CreateUserDTO(request.body);
 
@@ -41,6 +42,14 @@ class UserController {
     const user = await userService.get(id);
 
     return response.json({ user });
+  }
+
+  public async getAll(request: Request, response: Response) {
+    const userService = new UserService();
+
+    const users = await userService.getAll();
+
+    return response.json({ users });
   }
 
   public async search(request: Request, response: Response) {

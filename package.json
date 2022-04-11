@@ -1,7 +1,6 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,6 +14,8 @@
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.23",
+    "@types/ws": "^8.5.3",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.3"
   },
   "dependencies": {
@@ -30,5 +31,14 @@
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.5",
     "ws": "^8.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Squad16-FCamara/FC-Hackathon2022-Squad16-Back-end.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Squad16-FCamara/FC-Hackathon2022-Squad16-Back-end/issues"
+  },
+  "homepage": "https://github.com/Squad16-FCamara/FC-Hackathon2022-Squad16-Back-end#readme",
+  "description": ""
 }

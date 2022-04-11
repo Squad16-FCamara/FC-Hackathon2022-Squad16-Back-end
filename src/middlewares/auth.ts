@@ -2,11 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { JwtPayload, verify } from 'jsonwebtoken';
 import AppError from '../errors/appError';
 
-async function authMiddleware(
-  request: Request,
-  response: Response,
-  next: NextFunction
-) {
+async function authMiddleware(request: Request, response: Response, next: NextFunction) {
   const [, token] = request.headers.authorization.split(' ');
 
   if (!token) {
