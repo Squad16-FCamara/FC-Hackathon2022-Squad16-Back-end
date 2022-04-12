@@ -24,6 +24,9 @@ export class User {
   @Column('varchar')
   email: string;
 
+  @Column('text')
+  about: string;
+
   @Column('varchar')
   password: string;
 

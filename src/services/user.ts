@@ -94,8 +94,15 @@ class UserService {
   }
 
   public async search(name: string) {
-    const users = await this.userRepository.findBy({
-      name: ILike(`%${name}%`),
+    const users = await this.userRepository.find({
+      where: [
+        {
+          name: ILike(`%${name}%`),
+        },
+        {
+          about: ILike(`%${name}%`),
+        },
+      ],
     });
 
     for (let i = 0; i < users.length; i++) {

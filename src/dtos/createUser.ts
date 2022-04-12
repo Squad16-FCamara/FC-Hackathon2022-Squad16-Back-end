@@ -1,4 +1,4 @@
-import { IsEmail, IsEnum, Length } from 'class-validator';
+import { IsEmail, IsEnum, IsString, Length } from 'class-validator';
 import { LangLevel } from '../entities/user';
 
 class CreateUserDTO {
@@ -10,6 +10,9 @@ class CreateUserDTO {
 
   @Length(8)
   password: string;
+
+  @IsString()
+  about: string;
 
   @IsEnum(LangLevel)
   c: LangLevel;
@@ -48,6 +51,7 @@ class CreateUserDTO {
     this.name = userDto.name;
     this.email = userDto.email;
     this.password = userDto.password;
+    this.about = userDto.about;
 
     this.c = userDto.c;
     this.cpp = userDto.cpp;
