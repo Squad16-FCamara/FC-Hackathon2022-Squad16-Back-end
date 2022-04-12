@@ -28,7 +28,34 @@ export class User {
   password: string;
 
   @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
+  c: LangLevel;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
+  cpp: LangLevel;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
+  css: LangLevel;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
+  html: LangLevel;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
+  java: LangLevel;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
   javascript: LangLevel;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
+  julia: LangLevel;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
+  python: LangLevel;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
+  r: LangLevel;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
+  ruby: LangLevel;
 
   @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
   typescript: LangLevel;
