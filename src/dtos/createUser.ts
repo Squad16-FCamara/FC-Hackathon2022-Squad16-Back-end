@@ -51,19 +51,19 @@ class CreateUserDTO {
     this.name = userDto.name;
     this.email = userDto.email;
     this.password = userDto.password;
-    this.about = userDto.about;
+    this.about = userDto.about || '';
 
-    this.c = userDto.c;
-    this.cpp = userDto.cpp;
-    this.css = userDto.css;
-    this.html = userDto.html;
-    this.java = userDto.java;
-    this.javascript = userDto.javascript;
-    this.julia = userDto.julia;
-    this.python = userDto.python;
-    this.r = userDto.r;
-    this.ruby = userDto.ruby;
-    this.typescript = userDto.typescript;
+    this.c = userDto.c || LangLevel.estudante;
+    this.cpp = userDto.cpp || LangLevel.estudante;
+    this.css = userDto.css || LangLevel.estudante;
+    this.html = userDto.html || LangLevel.estudante;
+    this.java = userDto.java || LangLevel.estudante;
+    this.javascript = userDto.javascript || LangLevel.estudante;
+    this.julia = userDto.julia || LangLevel.estudante;
+    this.python = userDto.python || LangLevel.estudante;
+    this.r = userDto.r || LangLevel.estudante;
+    this.ruby = userDto.ruby || LangLevel.estudante;
+    this.typescript = userDto.typescript || LangLevel.estudante;
   }
 }
 
