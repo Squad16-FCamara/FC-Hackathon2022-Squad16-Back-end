@@ -84,11 +84,11 @@ class UserService {
   public async getAll() {
     const users = await this.userRepository.find();
 
-    users.forEach( user => {
+    users.forEach((user) => {
       delete user.password;
       delete user.updatedAt;
-    })
-  
+    });
+
     return users;
   }
 

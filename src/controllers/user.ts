@@ -7,7 +7,6 @@ import UserService from '../services/user';
 import validateDto from '../validations/validateDto';
 
 class UserController {
-  
   public async create(request: Request, response: Response) {
     const userDto = new CreateUserDTO(request.body);
 

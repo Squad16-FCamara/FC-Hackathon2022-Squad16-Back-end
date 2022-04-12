@@ -8,7 +8,7 @@ import errorHandler from './middlewares/error';
 import { User } from './entities/user';
 import routes from './routes';
 import { createServer } from 'http';
-import WebSocket, { Server, WebSocketServer } from 'ws';
+import WebSocket, { Server } from 'ws';
 config();
 
 const app = express();
