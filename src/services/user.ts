@@ -87,6 +87,7 @@ class UserService {
     users.forEach((user) => {
       delete user.password;
       delete user.updatedAt;
+      delete user.email;
     });
 
     return users;

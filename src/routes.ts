@@ -10,7 +10,7 @@ const userController = new UserController();
 
 routes.post('/user', userController.create);
 routes.post('/auth', userController.auth);
-routes.get('/users', userController.getAll);
+routes.get('/users', authMiddleware, userController.getAll);
 routes.get('/user/:id', authMiddleware, userController.get);
 routes.get('/search', authMiddleware, userController.search);
 
