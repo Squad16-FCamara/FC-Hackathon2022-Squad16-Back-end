@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import FeedbackController from './controllers/feedback';
 import UserController from './controllers/user';
 import authMiddleware from './middlewares/auth';
 
@@ -13,5 +14,9 @@ routes.post('/auth', userController.auth);
 routes.get('/users', authMiddleware, userController.getAll);
 routes.get('/user/:id', authMiddleware, userController.get);
 routes.get('/search', authMiddleware, userController.search);
+
+const feedbackController = new FeedbackController();
+
+routes.post('/feedback', authMiddleware, feedbackController.create);
 
 export default routes;

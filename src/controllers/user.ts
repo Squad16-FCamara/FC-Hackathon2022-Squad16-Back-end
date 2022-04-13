@@ -54,7 +54,7 @@ class UserController {
   public async search(request: Request, response: Response) {
     const search = new SearchUserDto(request.query as any);
 
-    validateDto(search);
+    await validateDto(search);
 
     const userService = new UserService();
 

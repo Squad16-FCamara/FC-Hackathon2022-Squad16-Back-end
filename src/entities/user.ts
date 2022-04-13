@@ -2,9 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import Feedback from './feedback';
 
 export enum LangLevel {
   unknown = 0,
@@ -33,6 +35,18 @@ export class User {
 
   @Column({ type: 'boolean', default: false })
   mentor: boolean;
+
+  @OneToMany((type) => Feedback, (feedback) => feedback.owner)
+  feedbacks: Array<Feedback>;
+
+  @OneToMany((type) => Feedback, (feedback) => feedback.user)
+  feedbacksGiven: Array<Feedback>;
+
+  @Column({ type: 'integer', name: 'feedback_count', default: 0 })
+  feedbackCount: number;
+
+  @Column({ type: 'float', default: 5 })
+  stars: number;
 
   @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
   c: LangLevel;
