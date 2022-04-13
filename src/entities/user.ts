@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  IsNull,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -23,6 +24,9 @@ export class User {
 
   @Column('varchar')
   email: string;
+
+  @Column('varchar')
+  jobTitle: string;
 
   @Column('text')
   about: string;
@@ -50,7 +54,7 @@ export class User {
 
   @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
   julia: LangLevel;
-
+  
   @Column({ type: 'enum', enum: LangLevel, default: LangLevel.estudante })
   python: LangLevel;
 
