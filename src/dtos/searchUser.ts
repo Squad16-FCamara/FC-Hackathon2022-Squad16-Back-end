@@ -52,17 +52,17 @@ class SearchUserDto {
 
   constructor(userDto: SearchUserDto) {
     this.name = userDto.name;
-    this.c = userDto.c;
-    this.cpp = userDto.cpp;
-    this.css = userDto.css;
-    this.html = userDto.html;
-    this.java = userDto.java;
-    this.javascript = userDto.javascript;
-    this.julia = userDto.julia;
-    this.python = userDto.python;
-    this.r = userDto.r;
-    this.ruby = userDto.ruby;
-    this.typescript = userDto.typescript;
+    this.c = Number(userDto.c || LangLevel.unknown);
+    this.cpp = Number(userDto.cpp || LangLevel.unknown);
+    this.css = Number(userDto.css || LangLevel.unknown);
+    this.html = Number(userDto.html || LangLevel.unknown);
+    this.java = Number(userDto.java || LangLevel.unknown);
+    this.javascript = Number(userDto.javascript || LangLevel.unknown);
+    this.julia = Number(userDto.julia || LangLevel.unknown);
+    this.python = Number(userDto.python || LangLevel.unknown);
+    this.r = Number(userDto.r || LangLevel.unknown);
+    this.ruby = Number(userDto.ruby || LangLevel.unknown);
+    this.typescript = Number(userDto.typescript || LangLevel.unknown);
   }
 }
 

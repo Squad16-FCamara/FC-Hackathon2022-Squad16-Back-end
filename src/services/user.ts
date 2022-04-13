@@ -1,10 +1,11 @@
 import CreateUserDTO from '../dtos/createUser';
-import { getRepository, ILike, Repository } from 'typeorm';
+import { getRepository, ILike, MoreThanOrEqual, Repository } from 'typeorm';
 import { User } from '../entities/user';
 import AppError from '../errors/appError';
 import { compare, hash } from 'bcryptjs';
 import LoginUserDto from '../dtos/loginUser';
 import { sign } from 'jsonwebtoken';
+import SearchUserDto from '../dtos/searchUser';
 
 class UserService {
   private readonly userRepository: Repository<User>;
@@ -93,14 +94,61 @@ class UserService {
     return users;
   }
 
-  public async search(name: string) {
+  public async search(search: SearchUserDto) {
     const users = await this.userRepository.find({
+      // ts bug, se você somar ou subtrair um valor, o bug desaparece
+      // poderia colocar search.typescript - 0 para resolver no typescript
+      // para não comprometer o funcionamento, vou usar ts-ignore
       where: [
         {
-          name: ILike(`%${name}%`),
+          name: ILike(`%${search.name}%`),
+          // @ts-ignore
+          c: MoreThanOrEqual(search.c),
+          // @ts-ignore
+          cpp: MoreThanOrEqual(search.cpp),
+          // @ts-ignore
+          css: MoreThanOrEqual(search.css),
+          // @ts-ignore
+          html: MoreThanOrEqual(search.html),
+          // @ts-ignore
+          java: MoreThanOrEqual(search.java),
+          // @ts-ignore
+          javascript: MoreThanOrEqual(search.javascript),
+          // @ts-ignore
+          julia: MoreThanOrEqual(search.julia),
+          // @ts-ignore
+          python: MoreThanOrEqual(search.python),
+          // @ts-ignore
+          r: MoreThanOrEqual(search.r),
+          // @ts-ignore
+          ruby: MoreThanOrEqual(search.ruby),
+          // @ts-ignore
+          typescript: MoreThanOrEqual(search.typescript),
         },
         {
-          about: ILike(`%${name}%`),
+          about: ILike(`%${search.name}%`),
+          // @ts-ignore
+          c: MoreThanOrEqual(search.c),
+          // @ts-ignore
+          cpp: MoreThanOrEqual(search.cpp),
+          // @ts-ignore
+          css: MoreThanOrEqual(search.css),
+          // @ts-ignore
+          html: MoreThanOrEqual(search.html),
+          // @ts-ignore
+          java: MoreThanOrEqual(search.java),
+          // @ts-ignore
+          javascript: MoreThanOrEqual(search.javascript),
+          // @ts-ignore
+          julia: MoreThanOrEqual(search.julia),
+          // @ts-ignore
+          python: MoreThanOrEqual(search.python),
+          // @ts-ignore
+          r: MoreThanOrEqual(search.r),
+          // @ts-ignore
+          ruby: MoreThanOrEqual(search.ruby),
+          // @ts-ignore
+          typescript: MoreThanOrEqual(search.typescript),
         },
       ],
     });

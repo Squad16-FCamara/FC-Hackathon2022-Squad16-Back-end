@@ -52,15 +52,13 @@ class UserController {
   }
 
   public async search(request: Request, response: Response) {
-    const name = request.query.name;
+    const search = new SearchUserDto(request.query as any);
 
-    if (typeof name !== 'string') {
-      throw new AppError('You can not make a search like this');
-    }
+    validateDto(search);
 
     const userService = new UserService();
 
-    const users = await userService.search(name);
+    const users = await userService.search(search);
 
     return response.json({ users });
   }
