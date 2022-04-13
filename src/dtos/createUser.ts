@@ -53,17 +53,17 @@ class CreateUserDTO {
     this.password = userDto.password;
     this.about = userDto.about || '';
 
-    this.c = userDto.c || LangLevel.estudante;
-    this.cpp = userDto.cpp || LangLevel.estudante;
-    this.css = userDto.css || LangLevel.estudante;
-    this.html = userDto.html || LangLevel.estudante;
-    this.java = userDto.java || LangLevel.estudante;
-    this.javascript = userDto.javascript || LangLevel.estudante;
-    this.julia = userDto.julia || LangLevel.estudante;
-    this.python = userDto.python || LangLevel.estudante;
-    this.r = userDto.r || LangLevel.estudante;
-    this.ruby = userDto.ruby || LangLevel.estudante;
-    this.typescript = userDto.typescript || LangLevel.estudante;
+    this.c = userDto.c || LangLevel.unknown;
+    this.cpp = userDto.cpp || LangLevel.unknown;
+    this.css = userDto.css || LangLevel.unknown;
+    this.html = userDto.html || LangLevel.unknown;
+    this.java = userDto.java || LangLevel.unknown;
+    this.javascript = userDto.javascript || LangLevel.unknown;
+    this.julia = userDto.julia || LangLevel.unknown;
+    this.python = userDto.python || LangLevel.unknown;
+    this.r = userDto.r || LangLevel.unknown;
+    this.ruby = userDto.ruby || LangLevel.unknown;
+    this.typescript = userDto.typescript || LangLevel.unknown;
   }
 }
 
