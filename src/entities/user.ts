@@ -31,6 +31,9 @@ export class User {
   @Column('varchar')
   password: string;
 
+  @Column({ type: 'boolean', default: false })
+  mentor: boolean;
+
   @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
   c: LangLevel;
 

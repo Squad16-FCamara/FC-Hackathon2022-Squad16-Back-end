@@ -102,6 +102,7 @@ class UserService {
       where: [
         {
           name: ILike(`%${search.name}%`),
+          mentor: true,
           // @ts-ignore
           c: MoreThanOrEqual(search.c),
           // @ts-ignore
@@ -127,6 +128,7 @@ class UserService {
         },
         {
           about: ILike(`%${search.name}%`),
+          mentor: true,
           // @ts-ignore
           c: MoreThanOrEqual(search.c),
           // @ts-ignore
