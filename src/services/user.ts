@@ -6,12 +6,15 @@ import { compare, hash } from 'bcryptjs';
 import LoginUserDto from '../dtos/loginUser';
 import { sign } from 'jsonwebtoken';
 import SearchUserDto from '../dtos/searchUser';
+import Feedback from '../entities/feedback';
 
 class UserService {
   private readonly userRepository: Repository<User>;
+  private readonly feedbackRepository: Repository<Feedback>;
 
   constructor() {
     this.userRepository = getRepository(User);
+    this.feedbackRepository = getRepository(Feedback);
   }
 
   public async create(userDto: CreateUserDTO) {
@@ -78,6 +81,30 @@ class UserService {
     delete user.password;
     delete user.email;
     delete user.updatedAt;
+
+    if (!user.mentor) {
+      return user;
+    }
+
+    const feedbacks = await this.feedbackRepository.find({
+      where: {
+        user: {
+          id: user.id,
+        },
+      },
+      relations: ['owner'],
+    });
+
+    user.feedbacks = feedbacks.map((feedback) => {
+      return {
+        owner: {
+          id: feedback.owner.id,
+          name: feedback.owner.name,
+        },
+        content: feedback.content,
+        stars: feedback.stars,
+      };
+    }) as Array<Feedback>;
 
     return user;
   }
