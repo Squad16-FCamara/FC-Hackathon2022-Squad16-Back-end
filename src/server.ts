@@ -10,6 +10,7 @@ import routes from './routes';
 import { createServer } from 'http';
 import WebSocket, { Server } from 'ws';
 import Feedback from './entities/feedback';
+import ConnectedUsers from './entities/connectedUsers';
 config();
 
 const app = express();
@@ -33,7 +34,7 @@ const port = process.env.PORT || 3333;
     ssl: true,
     synchronize: true,
     logging: false,
-    entities: [User, Feedback],
+    entities: [User, Feedback, ConnectedUsers],
   })
     .then(() => console.log('Connected to database'))
     .catch((error) => {

@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import ConnectedUsers from './connectedUsers';
 import Feedback from './feedback';
 
 export enum LangLevel {
@@ -44,6 +45,15 @@ export class User {
 
   @Column({ type: 'integer', name: 'feedback_count', default: 0 })
   feedbackCount: number;
+
+  @OneToMany((type) => ConnectedUsers, (connectedUsers) => connectedUsers.user)
+  connectedUsers: Array<ConnectedUsers>;
+
+  @OneToMany(
+    (type) => ConnectedUsers,
+    (connectedUsers) => connectedUsers.mentor
+  )
+  connectedMentors: Array<ConnectedUsers>;
 
   @Column({ type: 'float', default: 5 })
   stars: number;

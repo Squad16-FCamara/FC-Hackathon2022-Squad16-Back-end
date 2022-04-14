@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import ConnectedUsersController from './controllers/connectedUsers';
 import FeedbackController from './controllers/feedback';
 import UserController from './controllers/user';
 import authMiddleware from './middlewares/auth';
@@ -18,5 +19,9 @@ routes.get('/search', authMiddleware, userController.search);
 const feedbackController = new FeedbackController();
 
 routes.post('/feedback', authMiddleware, feedbackController.create);
+
+const connectedUsersController = new ConnectedUsersController();
+
+routes.post('/connect', authMiddleware, connectedUsersController.create);
 
 export default routes;
