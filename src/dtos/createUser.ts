@@ -18,6 +18,9 @@ class CreateUserDTO {
   @Length(8)
   password: string;
 
+  @Length(2, 100)
+  jobTitle: string;
+
   @IsString()
   about: string;
 

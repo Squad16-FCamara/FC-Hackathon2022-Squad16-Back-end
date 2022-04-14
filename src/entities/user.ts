@@ -28,6 +28,9 @@ export class User {
   @Column('varchar')
   email: string;
 
+  @Column('varchar')
+  jobTitle: string;
+
   @Column('text')
   about: string;
 
