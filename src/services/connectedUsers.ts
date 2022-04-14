@@ -57,10 +57,8 @@ class ConnectedUsersService {
 
       return connectedUsers.map((connectedUser) => {
         return {
-          user: {
-            id: connectedUser.user.id,
-            name: connectedUser.user.name,
-          },
+          id: connectedUser.user.id,
+          name: connectedUser.user.name,
         };
       });
     }
@@ -76,10 +74,8 @@ class ConnectedUsersService {
 
     return connectedUsers.map((connectedUser) => {
       return {
-        user: {
-          id: connectedUser.mentor.id,
-          name: connectedUser.mentor.name,
-        },
+        id: connectedUser.mentor.id,
+        name: connectedUser.mentor.name,
       };
     });
   }
