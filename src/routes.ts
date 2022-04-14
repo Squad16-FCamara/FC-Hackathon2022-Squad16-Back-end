@@ -23,5 +23,6 @@ routes.post('/feedback', authMiddleware, feedbackController.create);
 const connectedUsersController = new ConnectedUsersController();
 
 routes.post('/connect', authMiddleware, connectedUsersController.create);
+routes.get('/connect', authMiddleware, connectedUsersController.get);
 
 export default routes;

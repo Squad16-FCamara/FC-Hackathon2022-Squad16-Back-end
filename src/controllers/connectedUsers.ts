@@ -15,7 +15,15 @@ class ConnectedUsersController {
       connectedUsersDto
     );
 
-    return response.status(201).json(connectedUsers);
+    return response.status(201).json({ connectedUsers });
+  }
+
+  public async get(request: Request, response: Response) {
+    const connectedUsersService = new ConnectedUsersService();
+
+    const connectedUsers = await connectedUsersService.get(request.user.id);
+
+    return response.json({ connectedUsers });
   }
 }
 

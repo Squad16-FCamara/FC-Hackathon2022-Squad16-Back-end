@@ -37,6 +37,52 @@ class ConnectedUsersService {
 
     return connectedUsers;
   }
+
+  public async get(id: number) {
+    const user = await this.userRepository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (user.mentor) {
+      const connectedUsers = await this.connectedUsersRepository.find({
+        where: {
+          mentor: {
+            id,
+          },
+        },
+        relations: ['user'],
+      });
+
+      return connectedUsers.map((connectedUser) => {
+        return {
+          user: {
+            id: connectedUser.user.id,
+            name: connectedUser.user.name,
+          },
+        };
+      });
+    }
+
+    const connectedUsers = await this.connectedUsersRepository.find({
+      where: {
+        user: {
+          id,
+        },
+      },
+      relations: ['mentor'],
+    });
+
+    return connectedUsers.map((connectedUser) => {
+      return {
+        user: {
+          id: connectedUser.mentor.id,
+          name: connectedUser.mentor.name,
+        },
+      };
+    });
+  }
 }
 
 export default ConnectedUsersService;
