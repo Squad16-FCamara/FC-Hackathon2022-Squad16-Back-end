@@ -51,7 +51,7 @@ class SearchUserDto {
   typescript: LangLevel;
 
   constructor(userDto: SearchUserDto) {
-    this.name = userDto.name;
+    this.name = userDto.name || '';
     this.c = Number(userDto.c || LangLevel.desconhecido);
     this.cpp = Number(userDto.cpp || LangLevel.desconhecido);
     this.css = Number(userDto.css || LangLevel.desconhecido);

@@ -27,7 +27,7 @@ class ConnectedUsersService {
       throw new AppError('Mentor not found', 401);
     }
 
-    const exists = this.connectedUsersRepository.findOne({
+    const exists = await this.connectedUsersRepository.findOne({
       where: {
         mentor: {
           id: mentorId,
@@ -37,6 +37,8 @@ class ConnectedUsersService {
         },
       },
     });
+
+    console.log(exists);
 
     if (exists) {
       throw new AppError('You are already connected', 401);
