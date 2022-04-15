@@ -52,17 +52,17 @@ class SearchUserDto {
 
   constructor(userDto: SearchUserDto) {
     this.name = userDto.name;
-    this.c = Number(userDto.c || LangLevel.unknown);
-    this.cpp = Number(userDto.cpp || LangLevel.unknown);
-    this.css = Number(userDto.css || LangLevel.unknown);
-    this.html = Number(userDto.html || LangLevel.unknown);
-    this.java = Number(userDto.java || LangLevel.unknown);
-    this.javascript = Number(userDto.javascript || LangLevel.unknown);
-    this.julia = Number(userDto.julia || LangLevel.unknown);
-    this.python = Number(userDto.python || LangLevel.unknown);
-    this.r = Number(userDto.r || LangLevel.unknown);
-    this.ruby = Number(userDto.ruby || LangLevel.unknown);
-    this.typescript = Number(userDto.typescript || LangLevel.unknown);
+    this.c = Number(userDto.c || LangLevel.desconhecido);
+    this.cpp = Number(userDto.cpp || LangLevel.desconhecido);
+    this.css = Number(userDto.css || LangLevel.desconhecido);
+    this.html = Number(userDto.html || LangLevel.desconhecido);
+    this.java = Number(userDto.java || LangLevel.desconhecido);
+    this.javascript = Number(userDto.javascript || LangLevel.desconhecido);
+    this.julia = Number(userDto.julia || LangLevel.desconhecido);
+    this.python = Number(userDto.python || LangLevel.desconhecido);
+    this.r = Number(userDto.r || LangLevel.desconhecido);
+    this.ruby = Number(userDto.ruby || LangLevel.desconhecido);
+    this.typescript = Number(userDto.typescript || LangLevel.desconhecido);
   }
 }
 

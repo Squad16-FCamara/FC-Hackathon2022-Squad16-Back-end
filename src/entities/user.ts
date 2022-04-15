@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  IsNull,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -11,7 +12,7 @@ import Feedback from './feedback';
 import Message from './message';
 
 export enum LangLevel {
-  unknown = 0,
+  desconhecido = 0,
   estudante = 1,
   junior = 2,
   pleno = 3,
@@ -34,6 +35,9 @@ export class User {
 
   @Column('text')
   about: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  profileImgUrl: string;
 
   @Column('varchar')
   password: string;
@@ -68,37 +72,37 @@ export class User {
   @OneToMany((type) => Message, (message) => message.mentor)
   receivedMessages: Array<Message>;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   c: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   cpp: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   css: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   html: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   java: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   javascript: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   julia: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   python: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   r: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   ruby: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   typescript: LangLevel;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })

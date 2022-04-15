@@ -82,6 +82,26 @@ class UserService {
     delete user.email;
     delete user.updatedAt;
 
+    const skills = [];
+
+    for (const [key, value] of Object.entries(user)) {
+      if (
+        key == 'c' ||
+        key == 'cpp' ||
+        key == 'css' ||
+        key == 'html' ||
+        key == 'java' ||
+        key == 'javascript' ||
+        key == 'julia' ||
+        key == 'python' ||
+        key == 'r' ||
+        key == 'ruby' ||
+        key == 'typescript'
+      ) {
+        if (value != '0') skills.push(key);
+      }
+    }
+
     if (!user.mentor) {
       return user;
     }
@@ -106,19 +126,40 @@ class UserService {
       };
     }) as Array<Feedback>;
 
-    return user;
+    return { ...user, skills };
   }
 
   public async getAll() {
     const users = await this.userRepository.find();
 
-    users.forEach((user) => {
+    const userFilter = users.map((user) => {
       delete user.password;
-      delete user.updatedAt;
       delete user.email;
+      delete user.updatedAt;
+
+      const skills = [];
+
+      for (const [key, value] of Object.entries(user)) {
+        if (
+          key == 'c' ||
+          key == 'cpp' ||
+          key == 'css' ||
+          key == 'html' ||
+          key == 'java' ||
+          key == 'javascript' ||
+          key == 'julia' ||
+          key == 'python' ||
+          key == 'r' ||
+          key == 'ruby' ||
+          key == 'typescript'
+        ) {
+          if (value != '0') skills.push(key);
+        }
+      }
+      return { ...user, skills };
     });
 
-    return users;
+    return userFilter;
   }
 
   public async search(search: SearchUserDto) {
@@ -182,13 +223,34 @@ class UserService {
       ],
     });
 
-    for (let i = 0; i < users.length; i++) {
-      delete users[i].password;
-      delete users[i].updatedAt;
-      delete users[i].email;
-    }
+    const userFilter = users.map((user) => {
+      delete user.password;
+      delete user.email;
+      delete user.updatedAt;
 
-    return users;
+      const skills = [];
+
+      for (const [key, value] of Object.entries(user)) {
+        if (
+          key == 'c' ||
+          key == 'cpp' ||
+          key == 'css' ||
+          key == 'html' ||
+          key == 'java' ||
+          key == 'javascript' ||
+          key == 'julia' ||
+          key == 'python' ||
+          key == 'r' ||
+          key == 'ruby' ||
+          key == 'typescript'
+        ) {
+          if (value != '0') skills.push(key);
+        }
+      }
+      return { ...user, skills };
+    });
+
+    return userFilter;
   }
 }
 
