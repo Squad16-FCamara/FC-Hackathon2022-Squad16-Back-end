@@ -68,6 +68,7 @@ class CreateUserDTO {
     this.about = userDto.about || '';
     this.jobTitle = userDto.jobTitle;
     this.mentor = userDto.mentor;
+    this.jobTitle = userDto.jobTitle;
 
     this.c = userDto.c || LangLevel.desconhecido;
     this.cpp = userDto.cpp || LangLevel.desconhecido;

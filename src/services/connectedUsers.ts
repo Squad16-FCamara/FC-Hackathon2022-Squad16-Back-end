@@ -24,6 +24,21 @@ class ConnectedUsersService {
       throw new AppError('Mentor not found', 401);
     }
 
+    const exists = this.connectedUsersRepository.findOne({
+      where: {
+        mentor: {
+          id: mentorId,
+        },
+        user: {
+          id: userId,
+        },
+      },
+    });
+
+    if (exists) {
+      throw new AppError('You are already connected', 401);
+    }
+
     const connectedUsers = this.connectedUsersRepository.create({
       mentor: {
         id: mentorId,
@@ -57,10 +72,10 @@ class ConnectedUsersService {
 
       return connectedUsers.map((connectedUser) => {
         return {
-          user: {
-            id: connectedUser.user.id,
-            name: connectedUser.user.name,
-          },
+          id: connectedUser.user.id,
+          name: connectedUser.user.name,
+          about: connectedUser.user.about,
+          jobTitle: connectedUser.user.jobTitle,
         };
       });
     }
@@ -76,10 +91,10 @@ class ConnectedUsersService {
 
     return connectedUsers.map((connectedUser) => {
       return {
-        user: {
-          id: connectedUser.mentor.id,
-          name: connectedUser.mentor.name,
-        },
+        id: connectedUser.mentor.id,
+        name: connectedUser.mentor.name,
+        about: connectedUser.mentor.about,
+        jobTitle: connectedUser.mentor.jobTitle,
       };
     });
   }
