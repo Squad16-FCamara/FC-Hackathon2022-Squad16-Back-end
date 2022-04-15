@@ -8,7 +8,7 @@ import errorHandler from './middlewares/error';
 import { User } from './entities/user';
 import routes from './routes';
 import { createServer } from 'http';
-import WebSocket, { Server } from 'ws';
+import { Server } from 'socket.io'
 import Feedback from './entities/feedback';
 import ConnectedUsers from './entities/connectedUsers';
 config();
@@ -20,7 +20,7 @@ app.use(routes);
 app.use(errorHandler);
 
 const server = createServer(app);
-const wss = new Server({ server });
+// const wss = new Server({ server });
 
 const port = process.env.PORT || 3333;
 (async function start() {
@@ -42,7 +42,8 @@ const port = process.env.PORT || 3333;
       process.exit(1);
     });
 
-  wss.on('connection', (ws) =>
+    /*
+    wss.on('connection', (ws) =>
     ws.on('message', (data) => {
       const message = data.toString();
       wss.clients.forEach((client) => {
@@ -51,7 +52,18 @@ const port = process.env.PORT || 3333;
         }
       });
     })
-  );
+    );*/
 
-  server.listen(port, () => console.log('Server started'));
+    server.listen(port, () => console.log('Server started'));
+
+    const io = new Server(server, {
+      cors: {
+        origin: "http://localhost:6969",
+        methods: ["GET", "POST"]
+      }
+    })
+
+    io.on('connection', (socket) => {
+      console.log('Connected:  ', socket.id)
+    })
 })();

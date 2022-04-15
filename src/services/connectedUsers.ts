@@ -24,6 +24,20 @@ class ConnectedUsersService {
       throw new AppError('Mentor not found', 401);
     }
 
+    const exists = this.connectedUsersRepository.findOne({
+      where: {
+        mentor: {
+          id: mentorId,
+        },
+        user: {
+          id: userId,
+        },
+    }});
+
+    if (exists) {
+      throw new AppError('You are already connected', 401)
+    }
+
     const connectedUsers = this.connectedUsersRepository.create({
       mentor: {
         id: mentorId,
