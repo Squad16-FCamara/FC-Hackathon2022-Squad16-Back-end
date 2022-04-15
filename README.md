@@ -1,14 +1,17 @@
 <h1 align="center"> FC-Hackathon2022-Squad16-Back-end </h1>
 
+
 <h2 align="center"> Descrição </h2>
 
 Este é o back-end da Technical Share, uma aplicação desenvolvida para o Hackathon do Programa de Formação da FCamara - Season 3. 
 Ela usa **typescript** com **express**, **typeorm**, **class-validator**, **jsonwebtoken** e **socket.io**. É possível criar usuários, logar, procurar mentores, conversar com eles,
 avaliá-los e apresentar as tecnologias que o usuário está estudando. 
 
+
 <h2 align="center"> Dúvidas e bugs </h2>
 
 Para tirar dúvidas ou reportar bugs, por favor, utilizar o [canal do Squad16 no Discord](https://discordapp.com/channels/895049987241672704/895049990056058936). 
+
 
 <h2 align="center"> Equipe </h2>
 
@@ -23,11 +26,11 @@ Erika Soares
 ### DEVs
 [Juliana Satoko Hagiwara Miura - Github](https://github.com/SatokoHagiwara)  
 
+[Felipe Pupo - Github](https://github.com/felipepupo)
+
 [Carlos Henrique Varejão - Github](https://github.com/Carllitsy)
 
-[Ivy Magesti - Github](https://github.com/ivymagesti)
-
-[Felipe Pupo - Github]()
+[Ivy Magesti - Github](https://github.com/ivymagesti) 
 
 
 <h2 align="center"> Como instalar </h2>
