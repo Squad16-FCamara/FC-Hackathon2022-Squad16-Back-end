@@ -80,7 +80,17 @@ class UserService {
 
     delete user.password;
     delete user.email;
+    delete user.createdAt;
     delete user.updatedAt;
+
+    user.skills = [ ]
+
+    for(const[key, value] of Object.entries(user)){
+      if(key == 'c' || key == 'cpp' || key == 'css' || key == 'html' || key == 'java' || key == 'javascript' || key == 'julia' || key == 'python' || key == 'r' || key == 'ruby' || key == 'typescript'){
+          if(value != '0')
+            user.skills.push(key)
+        }
+    }
 
     if (!user.mentor) {
       return user;
@@ -114,8 +124,21 @@ class UserService {
 
     users.forEach((user) => {
       delete user.password;
-      delete user.updatedAt;
       delete user.email;
+      delete user.createdAt;
+      delete user.updatedAt;
+      delete user.feedbackCount;
+      delete user.stars;
+
+      user.skills = [ ];
+
+      for(const[key, value] of Object.entries(user)){
+        if(key == 'c' || key == 'cpp' || key == 'css' || key == 'html' || key == 'java' || key == 'javascript' || key == 'julia' || key == 'python' || key == 'r' || key == 'ruby' || key == 'typescript'){
+            if(value != '0')
+              user.skills.push(key)
+          }
+      }
+
     });
 
     return users;
@@ -127,6 +150,10 @@ class UserService {
       // poderia colocar search.typescript - 0 para resolver no typescript
       // para não comprometer o funcionamento, vou usar ts-ignore
       where: [
+        {
+          name: ILike(`%${search.name}%`),
+          mentor: true,
+        },
         {
           name: ILike(`%${search.name}%`),
           mentor: true,
@@ -182,11 +209,24 @@ class UserService {
       ],
     });
 
-    for (let i = 0; i < users.length; i++) {
-      delete users[i].password;
-      delete users[i].updatedAt;
-      delete users[i].email;
-    }
+    users.forEach((user) => {
+      delete user.password;
+      delete user.email;
+      delete user.createdAt;
+      delete user.updatedAt;
+      delete user.feedbackCount;
+      delete user.stars;
+
+      user.skills = [ ];
+
+      for(const[key, value] of Object.entries(user)){
+        if(key == 'c' || key == 'cpp' || key == 'css' || key == 'html' || key == 'java' || key == 'javascript' || key == 'julia' || key == 'python' || key == 'r' || key == 'ruby' || key == 'typescript'){
+            if(value != '0')
+              user.skills.push(key)
+          }
+      }
+
+    });
 
     return users;
   }

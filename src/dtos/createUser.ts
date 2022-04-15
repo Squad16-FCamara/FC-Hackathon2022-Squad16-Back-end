@@ -66,19 +66,20 @@ class CreateUserDTO {
     this.email = userDto.email;
     this.password = userDto.password;
     this.about = userDto.about || '';
+    this.jobTitle = userDto.jobTitle;
     this.mentor = userDto.mentor;
 
-    this.c = userDto.c || LangLevel.unknown;
-    this.cpp = userDto.cpp || LangLevel.unknown;
-    this.css = userDto.css || LangLevel.unknown;
-    this.html = userDto.html || LangLevel.unknown;
-    this.java = userDto.java || LangLevel.unknown;
-    this.javascript = userDto.javascript || LangLevel.unknown;
-    this.julia = userDto.julia || LangLevel.unknown;
-    this.python = userDto.python || LangLevel.unknown;
-    this.r = userDto.r || LangLevel.unknown;
-    this.ruby = userDto.ruby || LangLevel.unknown;
-    this.typescript = userDto.typescript || LangLevel.unknown;
+    this.c = userDto.c || LangLevel.desconhecido;
+    this.cpp = userDto.cpp || LangLevel.desconhecido;
+    this.css = userDto.css || LangLevel.desconhecido;
+    this.html = userDto.html || LangLevel.desconhecido;
+    this.java = userDto.java || LangLevel.desconhecido;
+    this.javascript = userDto.javascript || LangLevel.desconhecido;
+    this.julia = userDto.julia || LangLevel.desconhecido;
+    this.python = userDto.python || LangLevel.desconhecido;
+    this.r = userDto.r || LangLevel.desconhecido;
+    this.ruby = userDto.ruby || LangLevel.desconhecido;
+    this.typescript = userDto.typescript || LangLevel.desconhecido;
   }
 }
 

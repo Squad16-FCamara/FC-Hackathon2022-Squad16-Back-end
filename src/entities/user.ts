@@ -10,7 +10,7 @@ import ConnectedUsers from './connectedUsers';
 import Feedback from './feedback';
 
 export enum LangLevel {
-  unknown = 0,
+  desconhecido = 0,
   estudante = 1,
   junior = 2,
   pleno = 3,
@@ -61,37 +61,39 @@ export class User {
   @Column({ type: 'float', default: 5 })
   stars: number;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  skills: Array<String>;
+
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   c: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   cpp: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   css: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   html: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   java: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   javascript: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   julia: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   python: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   r: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   ruby: LangLevel;
 
-  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
+  @Column({ type: 'enum', enum: LangLevel, default: LangLevel.desconhecido })
   typescript: LangLevel;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
