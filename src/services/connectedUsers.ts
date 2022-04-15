@@ -73,6 +73,7 @@ class ConnectedUsersService {
         return {
           id: connectedUser.user.id,
           name: connectedUser.user.name,
+          about: connectedUser.user.about
         };
       });
     }
@@ -90,6 +91,7 @@ class ConnectedUsersService {
       return {
         id: connectedUser.mentor.id,
         name: connectedUser.mentor.name,
+        about: connectedUser.mentor.about
       };
     });
   }
