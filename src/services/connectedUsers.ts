@@ -32,10 +32,11 @@ class ConnectedUsersService {
         user: {
           id: userId,
         },
-    }});
+      },
+    });
 
     if (exists) {
-      throw new AppError('You are already connected', 401)
+      throw new AppError('You are already connected', 401);
     }
 
     const connectedUsers = this.connectedUsersRepository.create({
@@ -73,7 +74,8 @@ class ConnectedUsersService {
         return {
           id: connectedUser.user.id,
           name: connectedUser.user.name,
-          about: connectedUser.user.about
+          about: connectedUser.user.about,
+          jobTitle: connectedUser.user.jobTitle,
         };
       });
     }
@@ -91,7 +93,8 @@ class ConnectedUsersService {
       return {
         id: connectedUser.mentor.id,
         name: connectedUser.mentor.name,
-        about: connectedUser.mentor.about
+        about: connectedUser.mentor.about,
+        jobTitle: connectedUser.mentor.jobTitle,
       };
     });
   }
