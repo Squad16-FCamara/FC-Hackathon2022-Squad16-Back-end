@@ -11,6 +11,8 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import Feedback from './entities/feedback';
 import ConnectedUsers from './entities/connectedUsers';
+import socketEvents from './socketEvents';
+import Message from './entities/message';
 config();
 
 const app = express();
@@ -33,7 +35,7 @@ const port = process.env.PORT || 3333;
     ssl: true,
     synchronize: true,
     logging: false,
-    entities: [User, Feedback, ConnectedUsers],
+    entities: [User, Feedback, ConnectedUsers, Message],
   })
     .then(() => console.log('Connected to database'))
     .catch((error) => {
@@ -51,6 +53,6 @@ const port = process.env.PORT || 3333;
   });
 
   io.on('connection', (socket) => {
-    console.log('Connected:  ', socket.id);
+    socketEvents(socket);
   });
 })();

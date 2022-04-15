@@ -3,14 +3,17 @@ import CreateConnectedUsersDto from '../dtos/createConnectedUsers';
 import ConnectedUsers from '../entities/connectedUsers';
 import { User } from '../entities/user';
 import AppError from '../errors/appError';
+import Message from '../entities/message';
 
 class ConnectedUsersService {
   private readonly connectedUsersRepository: Repository<ConnectedUsers>;
   private readonly userRepository: Repository<User>;
+  private readonly messageRepository: Repository<Message>;
 
   constructor() {
     this.connectedUsersRepository = getRepository(ConnectedUsers);
     this.userRepository = getRepository(User);
+    this.messageRepository = getRepository(Message);
   }
 
   public async create({ mentorId, userId }: CreateConnectedUsersDto) {
@@ -60,6 +63,10 @@ class ConnectedUsersService {
       },
     });
 
+    if (!user) {
+      throw new AppError('User not found', 401);
+    }
+
     if (user.mentor) {
       const connectedUsers = await this.connectedUsersRepository.find({
         where: {
@@ -70,14 +77,38 @@ class ConnectedUsersService {
         relations: ['user'],
       });
 
-      return connectedUsers.map((connectedUser) => {
-        return {
-          id: connectedUser.user.id,
-          name: connectedUser.user.name,
-          about: connectedUser.user.about,
-          jobTitle: connectedUser.user.jobTitle,
-        };
-      });
+      return Promise.all(
+        connectedUsers.map(async (connectedUser) => {
+          const raw = await this.messageRepository.find({
+            where: {
+              mentor: {
+                id: user.id,
+              },
+              user: {
+                id: connectedUser.user.id,
+              },
+            },
+          });
+
+          const messages = raw.map((rawMessage) => {
+            return {
+              id: rawMessage.id,
+              content: rawMessage.content,
+              senderId: rawMessage.senderId,
+            };
+          });
+
+          console.log(messages);
+
+          return {
+            id: connectedUser.user.id,
+            name: connectedUser.user.name,
+            about: connectedUser.user.about,
+            jobTitle: connectedUser.user.jobTitle,
+            messages,
+          };
+        })
+      );
     }
 
     const connectedUsers = await this.connectedUsersRepository.find({
@@ -89,14 +120,35 @@ class ConnectedUsersService {
       relations: ['mentor'],
     });
 
-    return connectedUsers.map((connectedUser) => {
-      return {
-        id: connectedUser.mentor.id,
-        name: connectedUser.mentor.name,
-        about: connectedUser.mentor.about,
-        jobTitle: connectedUser.mentor.jobTitle,
-      };
-    });
+    return await Promise.all(
+      connectedUsers.map(async (connectedUser) => {
+        const raw = await this.messageRepository.find({
+          where: {
+            user: {
+              id: user.id,
+            },
+            mentor: {
+              id: connectedUser.mentor.id,
+            },
+          },
+        });
+
+        const messages = raw.map((rawMessage) => {
+          return {
+            id: rawMessage.id,
+            content: rawMessage.content,
+          };
+        });
+
+        return {
+          id: connectedUser.mentor.id,
+          name: connectedUser.mentor.name,
+          about: connectedUser.mentor.about,
+          jobTitle: connectedUser.mentor.jobTitle,
+          messages,
+        };
+      })
+    );
   }
 }
 

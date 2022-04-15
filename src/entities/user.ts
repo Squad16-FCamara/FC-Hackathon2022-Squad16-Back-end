@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import ConnectedUsers from './connectedUsers';
 import Feedback from './feedback';
+import Message from './message';
 
 export enum LangLevel {
   unknown = 0,
@@ -60,6 +61,12 @@ export class User {
 
   @Column({ type: 'float', default: 5 })
   stars: number;
+
+  @OneToMany((type) => Message, (message) => message.user)
+  messages: Array<Message>;
+
+  @OneToMany((type) => Message, (message) => message.mentor)
+  receivedMessages: Array<Message>;
 
   @Column({ type: 'enum', enum: LangLevel, default: LangLevel.unknown })
   c: LangLevel;
