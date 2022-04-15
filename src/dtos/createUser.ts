@@ -72,7 +72,7 @@ class CreateUserDTO {
     this.about = userDto.about || '';
     this.jobTitle = userDto.jobTitle;
     this.mentor = userDto.mentor;
-    this.profileImgUrl = userDto.profileImgUrl || '../../images/perfil.png';
+    this.profileImgUrl = userDto.profileImgUrl || '../images/perfil.png';
 
     this.c = userDto.c || LangLevel.desconhecido;
     this.cpp = userDto.cpp || LangLevel.desconhecido;
