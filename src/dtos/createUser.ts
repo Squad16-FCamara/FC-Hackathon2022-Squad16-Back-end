@@ -28,6 +28,10 @@ class CreateUserDTO {
   @IsBoolean()
   mentor: boolean;
 
+  @IsOptional()
+  @Length(2,100)
+  profileImgUrl: string;
+
   @IsEnum(LangLevel)
   c: LangLevel;
 
@@ -68,7 +72,7 @@ class CreateUserDTO {
     this.about = userDto.about || '';
     this.jobTitle = userDto.jobTitle;
     this.mentor = userDto.mentor;
-    this.jobTitle = userDto.jobTitle;
+    this.profileImgUrl = userDto.profileImgUrl || '../../images/perfil.png';
 
     this.c = userDto.c || LangLevel.desconhecido;
     this.cpp = userDto.cpp || LangLevel.desconhecido;

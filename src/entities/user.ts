@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  IsNull,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -33,6 +34,9 @@ export class User {
 
   @Column('text')
   about: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  profileImgUrl: string;
 
   @Column('varchar')
   password: string;
